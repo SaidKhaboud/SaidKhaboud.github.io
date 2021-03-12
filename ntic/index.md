@@ -1,3 +1,5 @@
+Bienvenue ! Voici ma synthèse sur les GNN, réalisée dans le cadre du MOS 4.4 "Nouvelles Technologies de l’Information et de la Communication" à l’École Centrale de Lyon - *Said Khaboud*
+
 ## Deep Learning sur les graphes
 
 ### Définition :
