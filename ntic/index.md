@@ -14,8 +14,7 @@ Nous allons choisir un point de départ un peu plus familier : les réseaux neur
 
 Imaginez maintenant la séquence sur laquelle un RNN opère comme un graphe linéaire dirigé, mais enlevez les entrées et les connexions pondérées, qui seront intégrées comme des états de nœuds et des bords, respectivement. En fait, supprimez également la sortie. Dans un réseau neuronal à graphe, les données d'entrée sont l'état original de chaque nœud, et la sortie est analysée à partir de l'état caché après avoir effectué un certain nombre de mises à jour définies comme un hyperparamètre.
 
-![Image3](rnn2.png)
-*Ré imagination un RNN comme un réseau neuronal graphique sur un graphe acyclique linéaire*
+![Image3](rnn2.png "Ré imagination un RNN comme un réseau neuronal graphique sur un graphe acyclique linéaire")
 
 Tout d'abord, chaque nœud agrège les états de ses voisins. Cela peut se faire par des passages en avant à travers un réseau neuronal avec des poids partagés entre les bords, ou simplement en faisant la moyenne des vecteurs d'état de tous les nœuds adjacents. L'état caché précédent d'un nœud est également inclus dans cette agrégation de voisinage, mais bénéficie souvent d'un traitement spécial. L'état propre d'un nœud peut être analysé par sa propre couche cachée ou en l'ajoutant simplement au vecteur d'état calculé à partir de la moyenne de tous les états voisins. Il n'y a pas de concept de temps dans un GNN généralisé, et chaque nœud tire des données de ses voisins, qu'ils soient "devant" ou "derrière", bien que dans un graphe dirigé ou un graphe avec plusieurs espèces de connexions, les différents bords peuvent avoir leurs propres politiques d'agrégation. Un autre terme utilisé fréquemment pour décrire cette opération est : "Neural message passing".
 En général, une epoch d’un GNN peut être simplifié en 2 étapes :
