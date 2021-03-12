@@ -26,8 +26,9 @@ En général, une epoch d’un GNN peut être simplifié en 2 étapes :
 ### Exemple d’application utile de GNN
 Prenons un scénario réaliste (mais toujours simplifié) décrivant l’une des applications de réseaux neuronaux graphiques, pour voir comment ces structures peuvent mener à des résultats utiles. Supposons que nous voulions prédire quels atomes des résidus d'acides aminés sont hydrophiles (miscibles dans l'eau) par opposition à ceux qui sont hydrophobes, comme les huiles. Il s'agit d'une information importante pour déterminer comment les protéines se replient, une question difficile et fondamentale en biologie moléculaire. Prenons l'exemple de l'arginine, un acide aminé qui présente à la fois des caractéristiques hydrophiles et hydrophobes. Après avoir formulé la molécule sous forme de graphique comme suit :
 
-![Image4](protein.png)
-*Représentation graphique de l'arginine, un acide aminé amphipathique*
+| ![Image4](protein.png) | 
+|:--:| 
+| *Représentation graphique de l'arginine, un acide aminé amphipathique* |
 
 Nous pouvons exécuter l'agrégation de voisinage et les mises à jour d'état pour obtenir une prédiction de l'hydrophilie à chaque nœud.
 Un aspect intéressant de la chaîne latérale de l'arginine qui affecte cette double nature est que l'hydrophilie est distribuée sur les trois résidus amino contenant de l'azote dans la chaîne latérale. Le terme pour désigner cette disposition de trois atomes d'azote autour d'un carbone central est un groupe guanidino. Il est difficile d'imaginer capturer cette hydrophilie distribuée en considérant chaque nœud de manière isolée, mais c'est exactement le type d'information que l'on peut obtenir en incorporant les informations structurelles d'un graphe.
@@ -40,9 +41,9 @@ Un autre exemple connu d’application des GNN est [HyperFoods]( https://www.nat
 L'attention est un concept qui donne aux modèles d'apprentissage automatique la capacité d'apprendre à attribuer des poids différents aux différentes entrées, en d'autres termes, de donner aux modèles la capacité de gérer leur propre attention. Nous pouvons citer l'article de Vaswani et al. intitulé ["Attention is All You Need"](https://arxiv.org/abs/1706.03762) comme exemple de travaux récents dans ce domaine. L'article présentait le transformateur d'attention comme un modèle de langage polyvalent. Cela s'est avéré être vrai dans la plupart des cas avec le développement de modèles de transformateurs massifs comme BERT et GPT-3 qui ont dominé la métrique du langage naturel ces dernières années.
 L'ajout de l'attention à l'algorithme GNN existant dont nous avons parlé précédemment est assez simple. Lors de l'agrégation de voisinage, en plus de la transformation des états des nœuds voisins via un réseau de feed-forward sur les arêtes du graphe, un mécanisme d'attention est inclus pour calculer les coefficients de pondération des vecteurs. Plusieurs mécanismes d'attention sont disponibles, comme celui du produit scalaire utilisé dans les modèles de transformation originaux, bien illustré par [Jay Allamar](https://jalammar.github.io/illustrated-transformer/). Dans ce schéma, les couches entièrement connectées produisent un vecteur clé et un vecteur de requête, en plus d'un vecteur de valeur pour chaque entrée, qui dans ce cas sont connectées aux nœuds par des arêtes de graphe. En prenant le produit scalaire des vecteurs clé et requête, on obtient une constante scalaire, qui est ensuite soumise à une fonction d'activation softmax avec tous les autres produits scalaires clé-requête dans le voisinage du graphe, c'est-à-dire les coefficients d'attention bruts. Enfin, au lieu d'additionner directement tous les vecteurs de valeur, ils sont d'abord pondérés par les coefficients d'attention.
 
-![Image5](gnn.png)
-*Exemple d'un réseau d'un GAN utilisant le mécanisme d'attention par produit de points. Dans ce cas, σ représente la fonction softmax*
-
+| ![Image5](gnn.png) | 
+|:--:| 
+| *Exemple d'un réseau d'un GAN utilisant le mécanisme d'attention par produit de points. Dans ce cas, σ représente la fonction softmax* |
 
 ### Les GNN quantiques
 Si la chimie quantique sur les réseaux neuronaux à graphes est un moyen efficace de tirer parti de la structure moléculaire lors de la réalisation d'inférences sur la chimie quantique, définir les réseaux neuronaux d'un GNN comme un ansatz, ou une architecture de circuit quantique, peut rapprocher encore plus les modèles du système sur lequel ils font des prédictions et apprennent. Les réseaux neuronaux à graphes quantiques (QGNN) ont été présentés en 2019 par [Verdon et al.]( https://arxiv.org/abs/1909.12264) Les auteurs ont ensuite subdivisé leurs travaux en deux classes différentes : les réseaux neuronaux récurrents à graphes quantiques et les réseaux convolutifs à graphes quantiques.
